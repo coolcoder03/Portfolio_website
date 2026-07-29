@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeba Wahab — AI / ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12142A;
+    --ink-soft:#1B1E3D;
+    --paper:#FAFAF8;
+    --paper-dim:#F1F0EC;
+    --indigo:#4B3FE0;
+    --indigo-soft:#B9B2F5;
+    --teal:#17B8A6;
+    --graphite:#5B6072;
+    --line:#E1E0DA;
+    --line-dark:#2B2E52;
+    --white:#FFFFFF;
+
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'IBM Plex Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  img{ display:block; max-width:100%; }
+
+  :focus-visible{ outline:2px solid var(--indigo); outline-offset:3px; }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,250,248,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .nav-mark{
+    font-family:var(--font-display); font-weight:700; font-size:1.05rem;
+    letter-spacing:0.02em;
+  }
+  .nav-mark span{ color:var(--indigo); }
+  .nav-links{ display:flex; gap:28px; font-family:var(--font-mono); font-size:0.82rem; }
+  .nav-links a{
+    color:var(--graphite); position:relative; padding-bottom:4px;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; height:1px; width:0;
+    background:var(--indigo); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:radial-gradient(120% 140% at 78% 20%, var(--ink-soft) 0%, var(--ink) 55%, #0B0D1F 100%);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-inner{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px;
+    align-items:center; padding:100px 32px 90px; max-width:1120px; margin:0 auto;
+    position:relative; z-index:2;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.12em;
+    color:var(--teal); text-transform:uppercase; margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:''; width:7px; height:7px; border-radius:50%;
+    background:var(--teal); box-shadow:0 0 0 4px rgba(23,184,166,0.18);
+  }
+  .hero h1{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(2.4rem, 4.4vw, 3.6rem);
+    line-height:1.05; letter-spacing:-0.01em;
+    margin-bottom:18px;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--indigo-soft);
+  }
+  .hero-role{
+    font-family:var(--font-mono); font-size:1rem; color:#C7C9E8; margin-bottom:22px;
+  }
+  .hero p.lede{
+    max-width:520px; color:#D8D9EE; font-size:1.02rem; margin-bottom:32px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px; }
+  .btn{
+    font-family:var(--font-mono); font-size:0.85rem;
+    padding:11px 20px; border-radius:8px; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .18s ease, background .18s ease, border-color .18s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{ background:var(--indigo); color:var(--white); }
+  .btn-primary:hover{ transform:translateY(-2px); background:#5A4CF0; }
+  .btn-ghost{ border:1px solid rgba(255,255,255,0.25); color:var(--paper); }
+  .btn-ghost:hover{ transform:translateY(-2px); border-color:var(--teal); color:var(--teal); }
+
+  .stat-row{ display:flex; gap:28px; flex-wrap:wrap; }
+  .stat{ min-width:110px; }
+  .stat .num{
+    font-family:var(--font-display); font-size:1.5rem; font-weight:700; color:var(--paper);
+  }
+  .stat .num span{ color:var(--teal); }
+  .stat .label{
+    font-family:var(--font-mono); font-size:0.72rem; color:#9A9DC4; margin-top:2px;
+  }
+
+  /* photo + node graph */
+  .hero-visual{
+    position:relative; width:100%; aspect-ratio:1/1; max-width:360px; margin:0 auto;
+  }
+  canvas#nodeCanvas{
+    position:absolute; inset:0; width:100%; height:100%;
+  }
+  .photo-frame{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:58%; height:58%; border-radius:50%;
+    overflow:hidden;
+    border:2px solid rgba(255,255,255,0.18);
+    box-shadow:0 0 0 10px rgba(75,63,224,0.08), 0 20px 60px rgba(0,0,0,0.45);
+    background:linear-gradient(160deg, #232659, #14162E);
+  }
+  .photo-fallback{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; font-size:2.6rem; color:var(--indigo-soft);
+    letter-spacing:0.02em;
+  }
+  .photo-img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  }
+  /* NOTE FOR MUNNA: to add the photo, base64-encode the pre-cropped image (PIL square crop)
+     and paste the string into the src attribute of <img class="photo-img" id="profilePhoto">
+     below in the HTML body. Leave src empty to keep the "ZW" fallback monogram. */
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:88px 0; }
+  .section-head{ margin-bottom:44px; max-width:640px; }
+  .section-tag{
+    font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--indigo); margin-bottom:10px; display:block;
+  }
+  .section-head h2{
+    font-family:var(--font-display); font-size:clamp(1.6rem,2.6vw,2.1rem); font-weight:700;
+  }
+  .section-head p{ color:var(--graphite); margin-top:12px; font-size:1rem; }
+
+  [data-reveal]{
+    opacity:0; transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  [data-reveal].is-visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:48px; }
+  .about-grid p{ color:#31344A; font-size:1.02rem; }
+  .focus-list{ border-left:2px solid var(--line); padding-left:22px; }
+  .focus-list li{
+    font-family:var(--font-mono); font-size:0.86rem; padding:9px 0;
+    color:var(--ink); position:relative;
+  }
+  .focus-list li::before{
+    content:'→'; color:var(--teal); margin-right:8px;
+  }
+
+  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .timeline{ position:relative; padding-left:36px; border-left:1px solid var(--line); }
+  .tl-item{ position:relative; padding-bottom:52px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:''; position:absolute; left:-42px; top:4px; width:11px; height:11px;
+    border-radius:50%; background:var(--paper); border:2px solid var(--indigo);
+  }
+  .tl-date{
+    font-family:var(--font-mono); font-size:0.78rem; color:var(--teal); margin-bottom:6px; display:block;
+  }
+  .tl-role{ font-family:var(--font-display); font-size:1.15rem; font-weight:600; }
+  .tl-org{ color:var(--graphite); font-size:0.92rem; margin-bottom:14px; }
+  .tl-item ul{ display:flex; flex-direction:column; gap:8px; }
+  .tl-item li{
+    font-size:0.96rem; color:#31344A; padding-left:18px; position:relative;
+  }
+  .tl-item li::before{
+    content:''; position:absolute; left:0; top:0.55em; width:6px; height:6px;
+    background:var(--indigo-soft); border-radius:50%;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px 40px; }
+  .skill-group h3{
+    font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--graphite); margin-bottom:12px;
+  }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .pill{
+    font-family:var(--font-mono); font-size:0.8rem; padding:6px 12px;
+    border:1px solid var(--line); border-radius:20px; background:var(--white);
+    transition:border-color .18s ease, color .18s ease, transform .18s ease;
+  }
+  .pill:hover{ border-color:var(--indigo); color:var(--indigo); transform:translateY(-1px); }
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .project-card{
+    background:var(--white); border:1px solid var(--line); border-radius:14px;
+    padding:28px; display:flex; flex-direction:column; gap:14px;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .project-card:hover{
+    transform:translateY(-4px); border-color:var(--indigo-soft);
+    box-shadow:0 18px 40px rgba(75,63,224,0.12);
+  }
+  .project-card h3{ font-family:var(--font-display); font-size:1.08rem; font-weight:600; }
+  .project-card .metric{
+    font-family:var(--font-mono); font-size:0.78rem; color:var(--teal);
+  }
+  .project-card ul{ display:flex; flex-direction:column; gap:8px; flex:1; }
+  .project-card li{ font-size:0.92rem; color:#31344A; padding-left:16px; position:relative; }
+  .project-card li::before{
+    content:''; position:absolute; left:0; top:0.5em; width:5px; height:5px;
+    background:var(--indigo); border-radius:50%;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; }
+  .tag-row span{
+    font-family:var(--font-mono); font-size:0.7rem; padding:4px 9px;
+    background:var(--paper-dim); border-radius:12px; color:var(--graphite);
+  }
+  .project-link{
+    font-family:var(--font-mono); font-size:0.78rem; color:var(--indigo);
+    font-weight:600; align-self:flex-start;
+  }
+  .project-link:hover{ color:var(--teal); }
+
+  /* ---------- EDU / CERT ---------- */
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  .card-simple{
+    border-top:2px solid var(--indigo); padding-top:18px; margin-bottom:26px;
+  }
+  .card-simple h3{ font-family:var(--font-display); font-size:1.05rem; font-weight:600; }
+  .card-simple .meta{
+    font-family:var(--font-mono); font-size:0.78rem; color:var(--graphite); margin:4px 0 8px;
+  }
+  .card-simple p{ font-size:0.92rem; color:#31344A; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink); color:var(--paper); padding:64px 0 36px;
+  }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
+  footer h2{ font-family:var(--font-display); font-size:1.8rem; margin-bottom:14px; }
+  footer .contact-links{ display:flex; gap:20px; flex-wrap:wrap; font-family:var(--font-mono); font-size:0.85rem; }
+  footer .contact-links a{ color:var(--indigo-soft); transition:color .2s ease; }
+  footer .contact-links a:hover{ color:var(--teal); }
+  footer .fine{ font-family:var(--font-mono); font-size:0.72rem; color:#7C7FA8; margin-top:40px; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .hero-inner{ grid-template-columns:1fr; padding-top:70px; }
+    .hero-visual{ order:-1; max-width:220px; }
+    .about-grid, .two-col{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .project-grid{ grid-template-columns:1fr; }
+    .nav-links{ display:none; }
+    .stat-row{ gap:20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    [data-reveal]{ transition:none; opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="nav-mark">Zeba<span>·</span>Wahab</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Available for full-time roles · Sunnyvale, CA</span>
+      <h1>Zeba Wahab<br><em>AI &amp; ML Engineer</em></h1>
+      <div class="hero-role">Retrieval-Augmented Generation · Fine-Tuning · Recommendation Systems</div>
+      <p class="lede">I build end-to-end ML systems — from data pipelines to fine-tuned transformers to production APIs — with 3+ years shipping RAG applications, embedding-based search, and NLP models that hold up under real traffic.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="mailto:zeba1506@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/zeba-wahab" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/coolcoder03" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num"><span>30%</span></div><div class="label">retrieval precision ↑</div></div>
+        <div class="stat"><div class="num"><span>97.4%</span></div><div class="label">phishing detection acc.</div></div>
+        <div class="stat"><div class="num"><span>60%</span></div><div class="label">ops cost reduction</div></div>
+        <div class="stat"><div class="num"><span>25%</span></div><div class="label">faster response time</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <canvas id="nodeCanvas"></canvas>
+      <div class="photo-frame">
+        <div class="photo-fallback">ZW</div>
+        <!-- Paste base64 image data into the src below (PIL pre-cropped square photo). Leave empty to keep the ZW monogram. -->
+        <img class="photo-img" id="profilePhoto" src="" alt="Portrait of Zeba Wahab" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="section-tag">Profile</span>
+      <h2>Systems that turn raw data into ranked, retrievable answers</h2>
+    </div>
+    <div class="about-grid">
+      <p data-reveal>
+        I'm an AI Engineer with a software engineering foundation, working across the full ML lifecycle —
+        data processing, model selection, fine-tuning, and deployment. My recent work centers on
+        Retrieval-Augmented Generation and semantic search: benchmarking embedding models, indexing with FAISS,
+        and fine-tuning transformers with LoRA/QLoRA to make retrieval faster and more precise. Before moving
+        into AI, I spent three years as a Full Stack engineer building the Web applications,SPAs,REST APIs and Node.js services that
+        now inform how I design ML systems meant to run in production, not just in notebooks.
+      </p>
+      <ul class="focus-list" data-reveal>
+        <li>Retrieval-Augmented Generation &amp; semantic search</li>
+        <li>Transformer fine-tuning (LoRA / QLoRA)</li>
+        <li>Recommendation systems at scale</li>
+        <li>NLP &amp; embedding model benchmarking</li>
+        <li>Cloud deployment — AWS &amp; GCP, Dockerized</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="experience" style="background:var(--paper-dim);">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="section-tag">Experience</span>
+      <h2>Enterprise engineering experience, applied to AI systems</h2>
+    </div>
+
+    <div class="timeline">
+      <!-- <div class="tl-item" data-reveal>
+        <span class="tl-date">May 2026 – Present</span>
+        <div class="tl-role">Software Engineer (Contractor) — LLM Evaluation</div>
+        <div class="tl-org">Mercor · Remote, Sunnyvale, CA</div>
+        <ul>
+          <li>Evaluate frontier LLM responses on software-engineering and reasoning tasks using structured rubrics for correctness, code quality, and reasoning depth.</li>
+          <li>Produce training-grade evaluation signal to support model improvement.</li>
+        </ul>
+      </div> -->
+
+      <div class="tl-item" data-reveal>
+        <span class="tl-date">May 2025 – Jan 2026</span>
+        <div class="tl-role">Software Engineer Intern</div>
+        <div class="tl-org">Local Grown Salads · Remote, CA</div>
+        <ul>
+          <li>Developed a React-based AI application that retrieved and visualized data from a 1TB PostgreSQL database through optimized REST APIs, enabling real-time analytics for engineers.</li>
+          <li>Collaborated with AI and backend engineers to design scalable REST API endpoints for ML-powered services, integrating data pipelines and documenting API ownership.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item" data-reveal>
+        <span class="tl-date">Sep 2024 – Apr 2025</span>
+        <div class="tl-role">Student Researcher</div>
+        <div class="tl-org">San Jose State University · San Jose, CA</div>
+        <ul>
+          <li>Built CarbonSense, an AI-powered carbon emissions analytics platform, with scalable Python and Pandas pipelines to clean and standardize multi-format datasets.</li>
+          <li>Performed EDA, feature engineering, and preprocessing to improve data quality and downstream model performance.</li>
+          <li>Benchmarked SBERT, FLAN-T5, IBM Granite, and IBM Slate for semantic search and retrieval quality, informing model selection for RAG systems.</li>
+         </ul>
+      </div>
+
+      <div class="tl-item" data-reveal>
+        <span class="tl-date">Jan 2018 – Sep 2021</span>
+        <div class="tl-role">Software Engineer</div>
+        <div class="tl-org">Tata Consultancy Services · Noida, UP</div>
+        <ul>
+          <li>Developed and maintained scalable Web applications for enterprise applications, improving application response time by ~25%.</li>
+          <li>Built Node.js middleware to overcome SAP licensing constraints, cutting operational costs by 60%, and designed a multilingual notification system across 6 languages.</li>
+          <li>Collaborated in an Agile environment on feature delivery and production support.</li>
+          <li>Led a team of 5 and mentored 3 new members while overseeing the client monitoring system.</li>
+       </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="section-tag">Skills</span>
+      <h2>Tooling across the model lifecycle</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group" data-reveal>
+        <h3>Generative AI &amp; LLMs</h3>
+        <div class="pill-row">
+          <span class="pill">Prompt Engineering</span><span class="pill">RAG</span><span class="pill">Semantic Search</span>
+          <span class="pill">Vector Search</span><span class="pill">Embedding Models</span><span class="pill">Fine-Tuning</span>
+          <span class="pill">LoRA</span><span class="pill">QLoRA</span><span class="pill">LangChain</span><span class="pill">LangGraph</span>
+          <span class="pill">n8n</span><span class="pill">CrewAI</span><span class="pill">Multimodal Agents</span>
+        </div>
+      </div>
+      <div class="skill-group" data-reveal>
+        <h3>Machine Learning &amp; Deep Learning</h3>
+        <div class="pill-row">
+          <span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">Scikit-learn</span>
+          <span class="pill">NLP</span><span class="pill">Recommendation Systems</span><span class="pill">Feature Engineering</span>
+          <span class="pill">Hyperparameter Tuning</span><span class="pill">EDA</span>
+        </div>
+      </div>
+      <div class="skill-group" data-reveal>
+        <h3>Data Engineering &amp; Databases</h3>
+        <div class="pill-row">
+          <span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">PostgreSQL</span>
+          <span class="pill">Apache Spark</span><span class="pill">FAISS</span><span class="pill">ETL</span>
+        </div>
+      </div>
+      <div class="skill-group" data-reveal>
+        <h3>Backend, Cloud &amp; Frontend</h3>
+        <div class="pill-row">
+          <span class="pill">Node.js</span><span class="pill">REST APIs</span><span class="pill">Microservices</span>
+          <span class="pill">AWS</span><span class="pill">GCP</span><span class="pill">Docker</span>
+          <span class="pill">React</span><span class="pill">Angular</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="projects" style="background:var(--paper-dim);">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="section-tag">Projects</span>
+      <h2>Selected AI and engineering builds</h2>
+    </div>
+    <div class="project-grid">
+      <div class="project-card" data-reveal>
+        <h3>NeuroFlow — 15-Day Behavioral Reset App</h3>
+        <span class="metric">Live PWA · independent build</span>
+        <ul>
+          <li>Designed, built, and deployed a 15-day behavioral reset experience grounded in dopamine and procrastination research.</li>
+          <li>Implemented an installable PWA with IndexedDB persistence; now in live user testing.</li>
+        </ul>
+        <div class="tag-row"><span>PWA</span><span>IndexedDB</span><span>Product Design</span></div>
+        <a class="project-link" href="https://coolcoder03.github.io/neuroflow" target="_blank" rel="noopener">View live project ↗</a>
+      </div>
+
+      <div class="project-card" data-reveal>
+        <h3>CarbonSense — AI Carbon Footprint Platform</h3>
+        <span class="metric">SJSU × IBM Watsonx pilot</span>
+        <ul>
+          <li>Co-built an environmental-impact assistant with a five-layer CrewAI architecture, Watson Discovery, Milvus, and FastAPI.</li>
+          <li>Presented the proof of concept to IBM engineering leadership after evaluating RAG model and embedding choices.</li>
+        </ul>
+        <div class="tag-row"><span>Watsonx</span><span>CrewAI</span><span>Milvus</span><span>FastAPI</span></div>
+       <a class="project-link" href="https://github.com/somesh-bagadiya/CarbonSense-powered-by-IBM-Watsonx" target="_blank" rel="noopener">See GitHub profile ↗</a>
+      </div>
+
+      <div class="project-card" data-reveal>
+        <h3>uApply — Job Recommendation System</h3>
+        <span class="metric">+30% recommendation precision</span>
+        <ul>
+          <li>Built a RAG system using LaBSE embeddings and FAISS indexing to match resumes with LinkedIn job postings.</li>
+          <li>Fine-tuned LaBSE and all-mpnet-base-v2 with LoRA/QLoRA for efficient training on limited compute.</li>
+          <li>Developed custom job prediction models with Hugging Face and prompt engineering.</li>
+        </ul>
+        <div class="tag-row"><span>FAISS</span><span>LaBSE</span><span>LoRA</span><span>Hugging Face</span></div>
+        <a class="project-link" href="https://github.com/coolcoder03/uApply-Job-Recommendation-System" target="_blank" rel="noopener">See GitHub profile ↗</a>
+      </div>
+
+      <div class="project-card" data-reveal>
+        <h3>Rabbit Genie — Knowledge Graph Explorer</h3>
+        <span class="metric">AMD Developer Hackathon 2026</span>
+        <ul>
+          <li>Co-built and submitted an interactive knowledge-graph exploration app for navigating connected concepts through a dynamic graph interface.</li>
+        </ul>
+        <div class="tag-row"><span>Knowledge Graphs</span><span>Interactive UI</span><span>Hackathon</span></div>
+       <a class="project-link" href="https://github.com/coolcoder03/rabbit-genie" target="_blank" rel="noopener">See GitHub profile ↗</a>
+      </div>
+
+      <div class="project-card" data-reveal>
+        <h3>URL Threat Assessment</h3>
+        <span class="metric">97.4% accuracy</span>
+        <ul>
+          <li>Detected phishing attempts using Gradient Boosting with engineered URL features.</li>
+          <li>Improved model performance through feature analysis and hyperparameter tuning.</li>
+        </ul>
+        <div class="tag-row"><span>Gradient Boosting</span><span>Feature Engineering</span><span>Security</span></div>
+        <a class="project-link" href="https://www.kaggle.com/code/kragg033/phishing-detection" target="_blank" rel="noopener">See GitHub profile ↗</a>
+      </div>
+        <div class="project-card" data-reveal>
+        <h3>OTTO Recommendation System</h3>
+        <span class="metric">Kaggle competition</span>
+        <ul>
+          <li>Developed a multiclass recommendation system using embedding layers, KNN, item similarity, and matrix factorization.</li>
+          <li>Deployed the model on Google Cloud, improving user engagement through better recommendation delivery.</li>
+        </ul>
+        <div class="tag-row"><span>GCP</span><span>Embeddings</span><span>KNN</span><span>Matrix Factorization</span></div>
+        <a class="project-link" href="https://github.com/coolcoder03/Otto-Recommedation-Engine" target="_blank" rel="noopener">See GitHub profile ↗</a>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="section-tag">Education &amp; Certifications</span>
+      <h2>Foundation</h2>
+    </div>
+    <div class="two-col">
+      <div data-reveal>
+        <div class="card-simple">
+          <h3>Master's, Computer Engineering</h3>
+          <div class="meta">San Jose State University · Aug 2022 – Dec 2024</div>
+          <p>Algorithms &amp; Data Structures, Operating Systems, System Software, Software Security Technologies, Machine Learning, Recommender Systems.</p>
+        </div>
+        <div class="card-simple">
+          <h3>Bachelor's, Electrical Engineering</h3>
+          <div class="meta">Aligarh Muslim University · Aug 2013 – May 2017</div>
+        </div>
+      </div>
+      <div data-reveal>
+        <div class="card-simple">
+          <h3>Advanced LLM Agents MOOC</h3>
+          <div class="meta">Berkeley RDI · Jul 2025</div>
+          <p>Expertise in Large Language Models, AI, and AI agents.</p>
+        </div>
+        <div class="card-simple">
+          <h3>McKinsey Forward Program</h3>
+          <div class="meta">McKinsey &amp; Company · Jul 2025</div>
+          <p>Advanced soft skills in leadership and problem solving.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap footer-inner">
+    <div>
+      <h2>Let's build something.</h2>
+      <div class="contact-links">
+        <a href="mailto:zeba1506@gmail.com">zeba1506@gmail.com</a>
+        <a href="tel:+16692905543">(669) 290-5543</a>
+        <a href="https://www.linkedin.com/in/zeba-wahab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/coolcoder03" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="fine">Sunnyvale, CA · © 2026 Zeba Wahab</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll-reveal
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Hero node-graph animation (embedding-space motif)
+  const canvas = document.getElementById('nodeCanvas');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let nodes = [];
+  let w, h;
+
+  function resize(){
+    const rect = canvas.parentElement.getBoundingClientRect();
+    w = canvas.width = rect.width;
+    h = canvas.height = rect.height;
+  }
+
+  function initNodes(){
+    nodes = [];
+    const count = 22;
+    for (let i = 0; i < count; i++){
+      const angle = Math.random() * Math.PI * 2;
+      const radius = (Math.random() * 0.42 + 0.32) * (w/2);
+      nodes.push({
+        x: w/2 + Math.cos(angle)*radius,
+        y: h/2 + Math.sin(angle)*radius,
+        vx: (Math.random()-0.5)*0.25,
+        vy: (Math.random()-0.5)*0.25,
+        r: Math.random()*1.6 + 1.2
+      });
+    }
+  }
+
+  function step(){
+    ctx.clearRect(0,0,w,h);
+    const cx = w/2, cy = h/2, innerR = w*0.30;
+
+    for (const n of nodes){
+      n.x += n.vx; n.y += n.vy;
+      const dx = n.x - cx, dy = n.y - cy;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < innerR){ n.vx += (dx/dist)*0.02; n.vy += (dy/dist)*0.02; }
+      if (n.x < 0 || n.x > w) n.vx *= -1;
+      if (n.y < 0 || n.y > h) n.vy *= -1;
+    }
+
+    for (let i = 0; i < nodes.length; i++){
+      for (let j = i+1; j < nodes.length; j++){
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x-b.x, dy = a.y-b.y;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if (d < w*0.22){
+          ctx.strokeStyle = `rgba(75,63,224,${0.22 * (1 - d/(w*0.22))})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+
+    for (const n of nodes){
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(23,184,166,0.85)';
+      ctx.fill();
+    }
+
+    if (!reduceMotion) requestAnimationFrame(step);
+  }
+
+  function start(){
+    resize(); initNodes(); step();
+  }
+  window.addEventListener('resize', () => { resize(); initNodes(); if (reduceMotion) step(); });
+  start();
+</script>
+
+</body>
+</html>
